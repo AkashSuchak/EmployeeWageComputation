@@ -1,7 +1,7 @@
 #! /bin/bash 
 
 #Author : Akash Suchak
-#Store the daily wage along with the Total wage
+#Store the day and daily wage along with the Total wage
 
 #Assign values
 wagePerHr=20
@@ -9,9 +9,12 @@ fullDayHrs=8
 partDayHrs=4
 totalWorkingHrs=0
 index=0
+totalWage=0
 
-#Define Array to store daily Wage
+#Define Array to store day, daily Wage and total wage
+day=[]
 dailyWage=[]
+totalWages=[]
 
 #define Function to calculate Working Hours and Daily Wages
 function workHours(){
@@ -46,23 +49,36 @@ function workHours(){
 			return
 		fi
 		workingDays=$(($1 - 1))
-		#Display Daily Wage
-		echo "Daily Wage : ${dailyWage[$index]}"
+
+		#Storing Value in Day, Daily wage and Total wages
+		day[$index]=$(($index+1))
+		totalWage=$(($totalWage + ${dailyWage[$index]}))
+		totalWages[$index]=$totalWage
+
 		index=$(($index+1))
 
 		#Call function
 		workHours $workingDays
 
 	else
-		echo "$totalWorkingHours"
+		echo "Invalid"
 	fi
 }
 
-#calling Function
+#calling Function with parameter (working days=20)
 workHours 20
+
+#display Day, Daily Wage, Total Wage
+echo "Day: Daily = Total"
+echo "     wage    wage"
+echo "------------------"
+for ((i=0; i<20; i++))
+do
+	echo "${day[$i]} : ${dailyWage[$i]} = ${totalWages[$i]}"
+done
+
 
 #cound and Display Total Monthly wage
 totalMonthlyWage=$((totalWorkingHrs * wagePerHr))
-#echo "Total Working Hours of Month : $totalWorkingHrs"
+echo "Total Working Hours of Month : $totalWorkingHrs"
 echo "Total Wages of Month : $totalMonthlyWage"
-
