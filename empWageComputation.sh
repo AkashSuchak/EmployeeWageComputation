@@ -1,23 +1,30 @@
 #! /bin/bash
 
 #Author : Akash Suchak
-#Check Employee is Present or Not
+#Add Part TIme Employee and Wage
 
 #Random Number Generate
-check=$((RANDOM%2))
+check=$((RANDOM%3))
 
 #Assign values
 wagePerHr=20
 fullDayHrs=8
+partDayHrs=4
 
 #Calculate Daily Wage
-dailyWage=$((wagePerHr * fullDayHrs))
+dailyWageFullTime=$((wagePerHr * fullDayHrs))
+dailyWagePartTime=$((wagePerHr * partDayHrs))
 
-#Check Employee is Present or Absent
+#Check Employee is FullTime, PArtTime or Absent
+#Display Wage accordingly
 if [ $check -eq 1 ]
 then
-	echo "Employee is Present"
-	echo "Daily Wage : $dailyWage"
+	echo "Employee is Full Time Present"
+	echo "Daily Wage : $dailyWageFullTime"
+elif [ $check -eq 2 ]
+then
+	echo "Employee is Part Time Present"
+	echo "Daily Wage : $dailyWagePartTime"
 else
 	echo "Employee is Absent"
 fi
