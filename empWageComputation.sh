@@ -1,35 +1,42 @@
-#! /bin/bash -x
+#! /bin/bash 
 
 #Author : Akash Suchak
-#Calculating wages for Month
-
-#Random Number Generate
-check=$((RANDOM%3))
+#Calculate Wages till toal working hours or days is reached for a month
 
 #Assign values
 wagePerHr=20
 fullDayHrs=8
 partDayHrs=4
 workingDays=20
+totalWorkingHrs=0
 
 #Check Employee is FullTime, PartTime or Absent
-#Display Wage accordingly
-case $check in
-	1)
-		dailyWageFullTime=$((wagePerHr * fullDayHrs))
-		monthlyWageFullTime=$((dailyWageFullTime * workingDays))
-		echo "Employee is Full Time Present"
-		echo "Daily Wage : $dailyWageFullTime"
-		echo "Monthly Wage : $monthlyWageFullTime"
-		;;
-	2)
-		dailyWagePartTime=$((wagePerHr * partDayHrs))
-		monthlyWagePartTime=$((dailyWagePartTime * workingDays))
-		echo "Employee is Part Time Present"
-		echo "Daily Wage : $dailyWagePartTime"
-		echo "Monthly Wage : $monthlyWagePartTime"
-		;;
-	*)
-		echo "Employee is Absent"
-		;;
-esac
+for (( days=1; days<=$workingDays; days++ ))
+do
+	#Random Number Generate
+	check=$((RANDOM%3))
+
+	case $check in
+		1)
+			#dailyWageFullTime=$((wagePerHr * fullDayHrs))
+			#monthlyWageFullTime=$((dailyWageFullTime * workingDays))
+			totalWorkingHrs=$((totalWorkingHrs + fullDayHrs))
+			;;
+		2)
+			#dailyWagePartTime=$((wagePerHr * partDayHrs))
+			#monthlyWagePartTime=$((dailyWagePartTime * workingDays))
+			totalWorkingHrs=$((totalWorkingHrs + partDaysHrs))
+			;;
+		*)
+			totalWorkingHrs=$((totalWorkingHrs + 0))
+			;;
+	esac
+
+	if [ $totalWorkingDays > 100 ]
+	then
+		totalWorkingHrs=100
+	fi
+done
+totalMonthlyWage=$((totalWorkingHrs * wagePerHr))
+echo "Total Working Hours of Month : $totalWorkingHrs"
+echo "Total Wages of Month : $totalMonthlyWage"
