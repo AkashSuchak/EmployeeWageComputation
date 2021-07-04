@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #Author : Akash Suchak
-#Add Part TIme Employee and Wage
+#Solving Using Switch Case Statement
 
 #Random Number Generate
 check=$((RANDOM%3))
@@ -12,19 +12,21 @@ fullDayHrs=8
 partDayHrs=4
 
 #Calculate Daily Wage
-dailyWageFullTime=$((wagePerHr * fullDayHrs))
 dailyWagePartTime=$((wagePerHr * partDayHrs))
+dailyWageFullTime=$((wagePerHr * fullDayHrs))
 
 #Check Employee is FullTime, PArtTime or Absent
 #Display Wage accordingly
-if [ $check -eq 1 ]
-then
-	echo "Employee is Full Time Present"
-	echo "Daily Wage : $dailyWageFullTime"
-elif [ $check -eq 2 ]
-then
-	echo "Employee is Part Time Present"
-	echo "Daily Wage : $dailyWagePartTime"
-else
-	echo "Employee is Absent"
-fi
+case $check in
+	1)
+		echo "Employee is Full Time Present"
+		echo "Daily Wage : $dailyWageFullTime"
+		;;
+	2)
+		echo "Employee is Part Time Present"
+		echo "Daily Wage : $dailyWagePartTime"
+		;;
+	*)
+		echo "Employee is Absent"
+		;;
+esac
